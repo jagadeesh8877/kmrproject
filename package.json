@@ -1,0 +1,28 @@
+{
+  "name": "studentidapi",
+  "version": "1.0.0",
+  "description": "\"RESTful studentidApi\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "\"https://github.com/jagadeesh8877/kmrproject.git\""
+  },
+  "keywords": [
+    "[\"RESTful\"",
+    "\"Student\"",
+    "\"ID\"]"
+  ],
+  "author": "\"Jagadeesh.K\"",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.2.7"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
