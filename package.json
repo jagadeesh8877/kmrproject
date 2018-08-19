@@ -2,27 +2,37 @@
   "name": "studentidapi",
   "version": "1.0.0",
   "description": "\"RESTful studentidApi\"",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "webpack-dev-server --hot",
+    "server": "nodemon server.js"
   },
-  "repository": {
+    "repository": {
     "type": "git",
     "url": "\"https://github.com/jagadeesh8877/kmrproject.git\""
   },
-  "keywords": [
-    "[\"RESTful\"",
-    "\"Student\"",
-    "\"ID\"]"
-  ],
   "author": "\"Jagadeesh.K\"",
   "license": "ISC",
   "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.3",
+    "nodemon": "^1.18.3",
+    "react": "^16.4.2",
+    "react-datepicker": "^1.6.0",
+    "react-dom": "^16.4.2",
+    "style-loader": "^0.22.1",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
     "express": "^4.16.3",
     "mongoose": "^5.2.7"
   },
   "devDependencies": {
-    "nodemon": "^1.18.3"
+    "babel-preset-env": "^1.7.0"
   }
 }
