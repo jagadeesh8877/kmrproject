@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
   Data = mongoose.model('Data');
 
 exports.ListData = function(req, res) {
+  console.log("ful data")
   Data.find({}, function(err, data) {
     if (err)
       res.send(err);

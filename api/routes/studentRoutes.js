@@ -12,4 +12,5 @@ module.exports = function(app) {
     .get(studentController.ReadData)
     .put(studentController.UpdateData)
     .delete(studentController.DeleteData);
+  
 };

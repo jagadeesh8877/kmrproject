@@ -2,7 +2,7 @@ var express = require('express'),
   //multer = require('multer');
   //upload = multer();
   app = express(),
-  port = process.env.PORT || 8088,
+  port = process.env.PORT || 8089,
   mongoose = require('mongoose'),
   DataModel = require('./api/models/studentModel'), //created model loading here
   bodyParser = require('body-parser');
@@ -11,7 +11,11 @@ var express = require('express'),
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/AirSenseDB'); 
 
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
