@@ -14,6 +14,10 @@ var DataSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  StudentId: {
+    type: SchemaTypes.Number,
+    required: 'Kindly enter the ID of the task'
+  },
   Course: {
     type: SchemaTypes.String,
     default: "B.Tech"
