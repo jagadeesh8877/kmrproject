@@ -2,7 +2,7 @@ import React from "react";
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import '../node_modules/react-datepicker/dist/react-datepicker.css';
-const getstudentname = id => `http://localhost:8089/data/${id}`
+import {Table} from './table';
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
@@ -16,7 +16,8 @@ class HomePage extends React.Component {
             course:'',
             recordedtime:'',
             createddate:'',
-            status: ''
+            status: '',
+            rows:[]
         };
         this.handleChange = this.handleChange.bind(this);
         this.setStudentID = this.setStudentID.bind(this);
@@ -29,12 +30,10 @@ class HomePage extends React.Component {
         });
     }
     displayInput() {
-        fetch(getstudentname(this.state.studentID)).then(d => d.json()).then(d => {
-             this.setState({name: d.Name,course: d.Course, recordedtime: d.RecordedTime, createddate: d.CreatedDate, status: d.status})
-         }).catch((err)=>{console.log(err)});
         this.setState({showInput: true});
     }
     setStudentID(e) {
+        this.setState({showInput: false});
         if (e.target.value !== '') {
             this.setState({dateDisabled: true})
         } else {
@@ -58,17 +57,8 @@ class HomePage extends React.Component {
                     />
                 </div>
                 <br />
-                <button id="searchButton" onClick={this.displayInput}>Search</button> 
-                {this.state.showInput &&
-                    <div> 
-                        <p>ID: {this.state.studentID} </p>
-                        <p>Name: {this.state.name} </p>
-                        <p>Course: {this.state.course}</p>
-                        <p>Recorded time: {this.state.recordedtime}</p>
-                        <p>Created date: {this.state.createddate}</p>
-                        <p>Status: {this.state.status} </p>
-                    </div>
-                }
+                <button id="searchButton" onClick={this.displayInput}>Search</button>
+                {this.state.showInput && <Table studentID={this.state.studentID}/>}
             </div>
         );
     }

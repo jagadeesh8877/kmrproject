@@ -24,7 +24,7 @@ exports.RecordData = function(req, res) {
 
 
 exports.ReadData = function(req, res) {
-  Data.findOne({StudentId: req.params.dataId}, function(err, data) {
+  Data.find({StudentId: req.params.dataId}, function(err, data) {
     if (err)
       res.send(err);
     res.json(data);
@@ -44,7 +44,7 @@ exports.UpdateData = function(req, res) {
 exports.DeleteData = function(req, res) {
 
 
-  data.remove({
+  Data.remove({
     _id: req.params.dataId
   }, function(err, data) {
     if (err)

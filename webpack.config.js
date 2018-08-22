@@ -5,6 +5,7 @@ var config = {
        path:'/',
        filename: 'index.js',
     },
+    devtool: "#eval-source-map",
     devServer: {
        inline: true,
        port: 8080
