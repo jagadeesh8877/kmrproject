@@ -16,7 +16,7 @@ class Table extends React.Component {
         this.rows = [];
         fetch(getstudentname(this.props.studentID)).then(d => d.json()).then(d => {
             d.forEach(function(row) {
-                 this.rows.push(<TableRows name={row.Name} course={row.Course} studentid={row.StudentId} recordedtime={row.RecordedTime} status={row.status} />);
+                 this.rows.push(<TableRows name={row.RequestTime} user={row.User} zid={row.Zid} />);
             }.bind(this));
          this.setState({tableRows: this.rows});
          }).catch((err)=>{console.log(err)});
@@ -27,11 +27,9 @@ class Table extends React.Component {
                 <table>
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Course</th>
-                            <th>StudentID</th>
-                            <th>Recorded Time</th>
-                            <th>Status</th>
+                            <th>Request Time</th>
+                            <th>User</th>
+                            <th>Zid</th>
                         </tr>
                     </thead>
                     <tbody>

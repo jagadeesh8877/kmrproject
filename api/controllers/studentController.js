@@ -24,7 +24,7 @@ exports.RecordData = function(req, res) {
 
 
 exports.ReadData = function(req, res) {
-  Data.find({StudentId: req.params.dataId}, function(err, data) {
+  Data.find({Zid: req.params.dataId}, function(err, data) {
     if (err)
       res.send(err);
     res.json(data);

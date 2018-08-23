@@ -6,33 +6,20 @@ var SchemaTypes = mongoose.Schema.Types;
 
 
 var DataSchema = new Schema({
-  RecordedTime: {
+  Id: {
+    type: SchemaTypes.String,
+  },
+  //TODO: change time format in mongo
+  RequestTime: {
     type: Date,
     default: Date.now
   },
-  CreatedDate: {
-    type: Date,
-    default: Date.now
+  User: {
+    type: SchemaTypes.String,
   },
-  StudentId: {
+  Zid: {
     type: SchemaTypes.Number,
-    required: 'Kindly enter the ID of the task'
-  },
-  Course: {
-    type: SchemaTypes.String,
-    default: "B.Tech"
-  },
-  Name: {
-    type: SchemaTypes.String,
-    required: 'Kindly enter the name of the task'
-  },
-  status: {
-    type: [{
-      type: String,
-      enum: ['Late', 'Ontime']
-    }],
-    default: ['Ontime']
   }
-});
+},{collection: 'things'});
 
 module.exports = mongoose.model('Data', DataSchema);
