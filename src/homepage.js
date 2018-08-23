@@ -3,12 +3,14 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import '../node_modules/react-datepicker/dist/react-datepicker.css';
 import {Table} from './table';
+import {TableRows} from './tablerows';
+import './styles/homepagestyle.css'
+const getstudentname = id => `http://localhost:8089/data/${id}`
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
         this.state={
             startDate: moment(),
-            showInput: false,
             studentID: '',
             dateDisabled: false,
             IDDisabled: false,
@@ -17,11 +19,11 @@ class HomePage extends React.Component {
             recordedtime:'',
             createddate:'',
             status: '',
-            rows:[]
+            tableRows: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.setStudentID = this.setStudentID.bind(this);
-        this.displayInput = this.displayInput.bind(this);
+        this.setStudentID();
     }
     handleChange(date) {
         this.setState({
@@ -29,26 +31,29 @@ class HomePage extends React.Component {
           IDDisabled: true
         });
     }
-    displayInput() {
-        this.setState({showInput: true});
-    }
     setStudentID(e) {
-        this.setState({showInput: false});
-        if (e.target.value !== '') {
+        this.rows = [];
+        fetch(getstudentname(e ? e.target.value : '')).then(d => d.json()).then(d => {
+            d.forEach(function(row) {
+                 this.rows.push(<TableRows name={row.RequestTime} user={row.User} zid={row.Zid} />);
+            }.bind(this));
+         this.setState({tableRows: this.rows});
+         }).catch((err)=>{console.log(err)});
+        if (e && e.target.value !== '') {
             this.setState({dateDisabled: true})
         } else {
             this.setState({dateDisabled: false});
         }
-        this.setState({studentID: e.target.value});
+        
     }
     render() {
         return(
-            <div>
-                <div id="ID">Search by ID:<br />
-                    <input type="text" name="studentID" placeholder="Type student ID here" onChange={this.setStudentID} disabled={this.state.IDDisabled}></input>
+            <div id="home">
+                <div id="ID">Search by ID:
+                    <input id="idField" type="text" name="studentID" placeholder="Type student ID here" onChange={this.setStudentID} disabled={this.state.IDDisabled}></input>
                 </div>
                 <br />
-                <div id="date">Search by date:<br />
+                <div id="date">Search by date:
                     <DatePicker
                         id="datepicker"
                         selected={this.state.startDate}
@@ -57,8 +62,7 @@ class HomePage extends React.Component {
                     />
                 </div>
                 <br />
-                <button id="searchButton" onClick={this.displayInput}>Search</button>
-                {this.state.showInput && <Table studentID={this.state.studentID}/>}
+                <Table studentID={this.state.studentID} rows={this.state.tableRows}/>
             </div>
         );
     }

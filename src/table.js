@@ -1,30 +1,13 @@
 import React from "react";
-import {TableRows} from './tablerows';
-const getstudentname = id => `http://localhost:8089/data/${id}`
-
+import './styles/tablestyle.css';
 class Table extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {tableRows: ''};
-        this.fetchdata = this.fetchdata.bind(this);
-        this.fetchdata();
     }
-    componentWillReceiveProps() {
-        this.fetchdata();
-    }
-    fetchdata() {
-        this.rows = [];
-        fetch(getstudentname(this.props.studentID)).then(d => d.json()).then(d => {
-            d.forEach(function(row) {
-                 this.rows.push(<TableRows name={row.RequestTime} user={row.User} zid={row.Zid} />);
-            }.bind(this));
-         this.setState({tableRows: this.rows});
-         }).catch((err)=>{console.log(err)});
-    }
-    render() {    
+    render() {  
         return(
             <div>
-                <table>
+                <table id="table">
                     <thead>
                         <tr>
                             <th>Request Time</th>
@@ -33,7 +16,7 @@ class Table extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.tableRows}
+                        {this.props.rows}
                     </tbody>
                 </table>
             </div>
