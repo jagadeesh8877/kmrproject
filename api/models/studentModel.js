@@ -10,9 +10,8 @@ var DataSchema = new Schema({
     type: SchemaTypes.String,
   },
   //TODO: change time format in mongo
-  RequestTime: {
-    type: Date,
-    default: Date.now
+  Time: {
+    
   },
   User: {
     type: SchemaTypes.String,

@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
   Data = mongoose.model('Data');
 
 exports.ListData = function(req, res) {
-  console.log("ful data")
   Data.find({}, function(err, data) {
     if (err)
       res.send(err);
@@ -25,6 +24,16 @@ exports.RecordData = function(req, res) {
 
 exports.ReadData = function(req, res) {
   Data.find({Zid: req.params.dataId}, function(err, data) {
+    if (err)
+      res.send(err);
+    res.json(data);
+  });
+};
+
+exports.GetDataByDate = function(req, res) {
+  var convertedStartDate = parseInt(req.params.startDate);
+  var convertedEndDate = parseInt(req.params.endDate);
+  Data.find({Time: {$gte: convertedStartDate, $lte: convertedEndDate}}, function(err, data) {
     if (err)
       res.send(err);
     res.json(data);

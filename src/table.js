@@ -1,5 +1,7 @@
 import React from "react";
-import './styles/tablestyle.css';
+import ReactTable from "react-table";
+import './styles/tableStyle.css';
+import 'react-table/react-table.css';
 class Table extends React.Component {
     constructor(props) {
         super(props);
@@ -7,18 +9,26 @@ class Table extends React.Component {
     render() {  
         return(
             <div>
-                <table id="table">
-                    <thead>
-                        <tr>
-                            <th>Request Time</th>
-                            <th>User</th>
-                            <th>Zid</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.props.rows}
-                    </tbody>
-                </table>
+                <ReactTable data={this.props.rows} columns={[
+                    {
+                        Header: 'Request Time',
+                        accessor: 'name',
+                        style: { textAlign: "center" },
+                        sortMethod: (a, b) => {
+                            a = new Date(a).getTime();
+                            b = new Date(b).getTime();
+                               return b > a ? 1 : -1;
+                            }
+                    }, {
+                        Header: 'User',
+                        accessor: 'user',
+                        style: { textAlign: "center" }
+                    }, {
+                        Header: 'Zid',
+                        accessor: 'zid',
+                        style: { textAlign: "center" }
+                    }
+                ]} defaultPageSize={20}  resizable= {false}/>
             </div>
         );
     }

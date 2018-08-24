@@ -1,14 +1,28 @@
-#home {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-}
 #idField {
-    width: 40%;
-    padding: 12px 20px;
+    width: 60%;
+    padding: 6px;
     margin: 8px 8px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+#date {
+    display: inline-flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    flex: 1 1 0px;
+}
+  
+#datepicker {   
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-left: 8px;
+    margin-top: -10px;
+    margin-right: 3px;
+}
+#ID {
+    display: inline-block;
 }
