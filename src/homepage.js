@@ -31,7 +31,7 @@ class HomePage extends React.Component {
         this.rows = [];
         fetch(filterByDate(date,this.state.endDate)).then(d =>d.json()).then(d => {
             d.forEach(function(row) {
-                this.rows.push({name: row.RequestTime, user: row.User, zid: row.Zid});
+                this.rows.push({name: row.RequestTime, user: row.User, zid: row.Zid, time: row.Time});
             }.bind(this));
             this.setState({tableRows: this.rows});
         }).catch((err)=>{console.log(err)});
@@ -44,7 +44,7 @@ class HomePage extends React.Component {
         this.rows = [];
         fetch(filterByDate(this.state.startDate,date)).then(d =>d.json()).then(d => {
             d.forEach(function(row) {
-                this.rows.push({name: row.RequestTime, user: row.User, zid: row.Zid});
+                this.rows.push({name: row.RequestTime, user: row.User, zid: row.Zid, time: row.Time});
             }.bind(this));
             this.setState({tableRows: this.rows});
         }).catch((err)=>{console.log(err)});
@@ -57,7 +57,7 @@ class HomePage extends React.Component {
         this.rows = [];
         fetch(filterByID(e ? e.target.value : '')).then(d => d.json()).then(d => {
             d.forEach(function(row) {
-                 this.rows.push({name: row.RequestTime, user:row.User, zid:row.Zid});
+                 this.rows.push({name: row.RequestTime, user:row.User, zid:row.Zid, time: row.Time});
             }.bind(this));
          this.setState({tableRows: this.rows});
          }).catch((err)=>{console.log(err)});
@@ -83,6 +83,11 @@ class HomePage extends React.Component {
                         endDate={this.state.endDate}
                         onChange={this.handleChangeStart}
                         disabled={this.state.dateDisabled}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={15}
+                        timeCaption="time"
+                        dateFormat="LLL"
                     /> TO
                     <DatePicker
                         id="datepicker"
@@ -92,6 +97,11 @@ class HomePage extends React.Component {
                         endDate={this.state.endDate}
                         onChange={this.handleChangeEnd}
                         disabled={this.state.dateDisabled}
+                        showTimeSelect
+                        timeFormat="HH:mm"
+                        timeIntervals={15}
+                        timeCaption="time"
+                        dateFormat="LLL"
                     />
                 </div>
                 <br />

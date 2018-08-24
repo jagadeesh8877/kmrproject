@@ -12,21 +12,24 @@ class Table extends React.Component {
                 <ReactTable data={this.props.rows} columns={[
                     {
                         Header: 'Request Time',
-                        accessor: 'name',
+                        accessor: 'time',
                         style: { textAlign: "center" },
-                        sortMethod: (a, b) => {
-                            a = new Date(a).getTime();
-                            b = new Date(b).getTime();
-                               return b > a ? 1 : -1;
-                            }
+                        Cell: (props) => {
+                            return <span>{props.original.name}</span>;
+                          },
                     }, {
                         Header: 'User',
                         accessor: 'user',
-                        style: { textAlign: "center" }
+                        style: { textAlign: "center" },
                     }, {
                         Header: 'Zid',
                         accessor: 'zid',
                         style: { textAlign: "center" }
+                    }, {
+                        Header: 'Time',
+                        accessor: 'time',
+                        style: {textAlign: "center"},
+                        show: false
                     }
                 ]} defaultPageSize={20}  resizable= {false}/>
             </div>
